@@ -1,0 +1,31 @@
+CC = clang
+CFLAGS = -Wall -Werror -std=c11 -g
+
+SRC_DIRS = . $(shell find . -type d -not -path './obj/*' -not -path './bin/*')
+OBJ_DIR = ./obj
+BIN_DIR = ./bin
+
+LDFLAGS = -lcs50
+
+SRCS := $(foreach dir,$(SRC_DIRS),$(wildcard $(dir)/*.c))
+OBJS := $(patsubst %.c,$(OBJ_DIR)/%.o,$(SRCS))
+BINS := $(patsubst %.c,$(BIN_DIR)/%,$(SRCS))
+
+.PHONY: all clean
+
+all: $(BINS)
+
+$(BIN_DIR)/%: $(OBJ_DIR)/%.o
+	$(CC) $(CFLAGS) $< -o $@ $(LDFLAGS)
+
+$(OBJ_DIR)/%.o: %.c | $(OBJ_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJ_DIR):
+	mkdir -p $@
+
+$(BIN_DIR):
+	mkdir -p $@
+
+clean:
+	rm -rf $(OBJ_DIR) $(BIN_DIR)
