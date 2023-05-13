@@ -1,0 +1,28 @@
+Hexadecimal 
+Counts from 0 - f
+- base 16
+
+NULL reperesent a non-existent memory address while \0 represents a null character that shows the end of a string
+NULL comes with the stdlib.h file
+stdlib.h functions
+    malloc() - to allocate memory
+    NULL to show non-existent memory address
+
+ctype.h functions
+    toupper - converts the string to uppercase
+
+string.h 
+    strlen - returns the length of the string
+    strcmp - compares two strings
+    strcpy - copy a string to a new location
+
+Memory layout
+ _______________
+| Machine code  |
+| Globals       |
+| Heap          |
+|  \/           |
+|               |
+|  /\           |
+| Stack         |
+|_______________|

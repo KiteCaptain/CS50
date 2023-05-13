@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "*.ejs": "html",
+        "jsp1": "javascript",
+        "javaPractise": "javascript",
+        "string.h": "c"
+    }
+}
