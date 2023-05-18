@@ -26,3 +26,14 @@ Memory layout
 |  /\           |
 | Stack         |
 |_______________|
+
+Buffer Overflow - happens when you overflow the memory allocated by malloc.
+When memory is allocated by the square brackets all the momory is freed once it is utilized fully
+
+TODO:
+    blur an image
+    BMP image
+    Grey scale images
+    Convert to sepia
+    Edge detecting images
+
