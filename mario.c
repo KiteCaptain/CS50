@@ -11,12 +11,24 @@ int main(void)
 
 void draw(int h)
 {
-    for (int i = 1; i <= h; i++)
+    // for (int i = 1; i <= h; i++)
+    // {
+    //     for (int j = 1; j <= i; j++)
+    //     {
+    //         printf("#");
+    //     }
+    //     printf("\n");
+    // }
+
+    //recursive draw
+    if (h == 0) 
     {
-        for (int j = 1; j <= i; j++)
-        {
-            printf("#");
-        }
-        printf("\n");
+        return;
     }
+    draw(h - 1);
+    for (int i = 0; i < h; i++)
+    {
+        printf("#");
+    } 
+    printf("\n");
 }
