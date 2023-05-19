@@ -58,7 +58,6 @@ if (n != NULL)
 }
 list -> next = n;
 
-
 -----------------------
 | Binary search trees | 
 -----------------------
