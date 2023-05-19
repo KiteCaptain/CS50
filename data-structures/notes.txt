@@ -1,0 +1,121 @@
+-------------------
+| Data structures |
+-------------------
+
+Running time of inserting into an array
+    Upper bound is O(n)
+    Lower bound is _O_(n)
+
+Running time of searching a linked list
+    Upper bound O(n)
+    Lower bound _O_()
+
+Running time of inserting into a linked list
+    Upper bound O(1)
+    Lower bound _O_(1)
+
+Building blocks for custom structures
+Struct - define our own data structures
+(.) - Go inside a struct
+(*) - Go to a particular address
+
+(.) and (*) are combined to (->)
+
+----------------
+| Linked lists |
+----------------
+Linked list can grow or shrink without deleting the original data
+-- Implementation -- 
+
+typedef struct node
+{
+    int number;
+    struct node *next;
+}
+node;
+
+node *n  = malloc(sizeof(node));
+
+if (n != NULL)
+{
+    (*n).number = 1;
+}
+// Different syntax
+if (n != NULL)
+{
+    n -> number = 1;
+}
+
+// To remember n exist
+list = n;
+
+// 
+node *n = malloc(sizeof(node));
+if (n != NULL)
+{
+    n -> number;
+    n -> next = NULL;
+}
+list -> next = n;
+
+
+-----------------------
+| Binary search trees | 
+-----------------------
+Running time of inserting into a binary tree.
+    Upper bound O(log n)
+    Lower bound _O_()
+
+typedef struct node
+{
+    int number;
+    struct node *left;
+    struct node *right;
+}
+node;
+// Implementing binary search using recursion.
+bool search(node *tree, int number)
+{
+    if (tree == NULL)
+    {
+        return false;
+    }
+    else if (number < tree->number)
+    {
+        return search(tree->left, number);
+    }
+    else is (number > tree->number)
+    {
+        return search(tree->right, number);
+    }
+    else is (number == tree->number)
+    {
+        return true;
+    }
+}
+
+-----------------
+|  Hash Tables  |
+-----------------
+Running time of searching a hashtable
+    Upper bound O(1)
+    Lower bound _O_()
+
+TODO: implement a hash table with over 100,000 english words.
+ 
+------------
+|  Tries   |
+------------
+It's a tree whose nodes is an array
+
+---------------------------
+| Abstract data structure |
+---------------------------
+Queues
+    Data stored in `first in first out` (FIFO) manner
+    > enqueue - joining a queue
+    > dequeque - being served to get out of the queue
+Stacks
+    Data stored on `Last in first out`(LIFO) manner 
+Dictionaries
+    Data stored in key-value pairs
