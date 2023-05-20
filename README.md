@@ -7,4 +7,6 @@ Follow the instructions on https://github.com/cs50/libcs50 to install the cs50 l
 Each folder has a makefile to enable the use of the command `$ make <filename>`
 
 ## TODO
-Make a single make file for use in all the folders instead of creating a mew makefile each time a new folder is made. This is for the C language practise.
+- Make a single make file for use in all the folders instead of creating a mew makefile each time a new folder is made. This is for the C language practise.
+
+- Configure wsl to support text to speech conversion using pyttsx3 module.

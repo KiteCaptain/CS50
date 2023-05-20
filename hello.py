@@ -1,4 +1,2 @@
-from cs50 import get_string
-
-answer = get_string("What's your name? ")
+name = input("What's your name? ")
 print(f"hello, {name}!")
