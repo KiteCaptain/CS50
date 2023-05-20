@@ -1,0 +1,6 @@
+Data Pre Processing
+    Data cleaning
+        - To remove white spaces in right and left of data items use strip() in python
+
+Relational Databases
+    SQLite   
