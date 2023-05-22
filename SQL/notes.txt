@@ -4,3 +4,17 @@ Data Pre Processing
 
 Relational Databases
     SQLite   
+
+- JOIN to join tables
+- create index to query more faster
+ Race conditions
+BEGIN TRANSACTION
+COMMIT
+ROLBACK
+
+How to solve the race condition 
+db.execute("BEGIN TRANSACTION")
+rows = db.execute("SELECT likes FROM posts WHERE is = ?", id)
+likes = rows[0]["likes]
+db.execute("UPDATE posts SET likes = ? WHERE id ?", likes + 1, id)
+db.execute("COMMIT")

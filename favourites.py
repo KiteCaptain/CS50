@@ -1,23 +1,27 @@
 import csv 
+from cs50 import SQL
 
-titles = dict()
+open("shows.db", "w").close()
+db = SQL("sqlite:///shows.db")
 
+db.execute("CREATE TABLE shows (id INTEGER, title TEXT, PRIMARY KEY(id))")
+db.execute("CREATE TABLE genres (show_id INTEGER, genre TEXT, FOREIGN KEY(show_id) REFERENCES shows(id))")
+
+# titles = dict()
+# with open("favourites.csv", "r") as file:
+#     reader = csv.DictReader(file)
+#     for row in reader:
+#         title = row["title"].strip().lower()
+#         if title not in titles:
+#             titles[title] = 1
+#         titles[title] += 1           
+# for title in sorted(titles, key=lambda title: titles[title], reverse=True):
+#     print(title, titles[title])
+    
 with open("favourites.csv", "r") as file:
     reader = csv.DictReader(file)
     for row in reader:
         title = row["title"].strip().lower()
-        if title not in titles:
-            titles[title] = 1
-        titles[title] += 1  
-             
-for title in sorted(titles, key=lambda title: titles[title], reverse=True):
-    print(title, titles[title])
-    
-title = input("Title: ").strip().lower()
-with open("favourites.csv", "r") as file:
-    reader = csv.DictReader(file)
-    counter = 0
-    for row in reader:
-        if row["title"].strip().lower() == title:
-            counter += 1
-print(counter)
+        id = db.execute("INSERT INTO shows (title) VALUES(?)", title)
+        for genre in row["genres"].split(", "):
+            db.execute("INSERT INTO genres (show_id, genre) VALUES (?, ?)", id , genre)
