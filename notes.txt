@@ -1,0 +1,15 @@
+  --- MODEL ---
+  |           |
+  |           |
+updates      manipulates
+  |           |
+  |           |
+VIEW        CONTROLLER
+  |           |
+  |           |
+sees       uses
+   \        /
+    \      /
+     \    /
+      \  /
+      USER
