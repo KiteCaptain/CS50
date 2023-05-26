@@ -4,7 +4,7 @@
 <div style="padding-top: 100px;" class="landing">
     <h1>Captain Books</h1>
     {% for book in books %}
-    <h2>{{ book.title }}</h2>
+    <h5>{{ book.title }}</h5>
     <form  action="/store/cart" method="POST">
         <input name="id" type="hidden" value="{{ book.id }}">
         <input type="submit" value="Add to cart">

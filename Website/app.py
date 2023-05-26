@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 
 app = Flask(__name__) 
 app.debug = True
-db = SQL("sqlite:///clubs.db")
+db = SQL("sqlite:///books.db")
 
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
