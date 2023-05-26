@@ -17,7 +17,7 @@
                 <h4 class="greetings">Hello, {{ name }}</h4>
             </div> 
             <form method="POST">
-                <input type="text" name="name">
+                <input autofocus type="email" name="email">
                 <select name="sport" type="radio">
                     <option disabled selected value="Football">Select your sport</option>
                     {% for sport in sports %}
