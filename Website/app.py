@@ -14,8 +14,6 @@ load_dotenv()
 sender = os.getenv("MAIL_DEFAULT_SENDER")
 password = os.getenv("MAIL_PASSWORD")
 username = os.getenv("MAIL_USERNAME")
-print(f"sender: {sender}, password: {password}, username: {username}")
-
 
 app.config["MAIL_DEFAULT_SENDER"] = sender
 app.config["MAIL_PASSWORD"] = password
@@ -23,13 +21,6 @@ app.config["MAIL_PORT"] = 587
 app.config["MAIL_SERVER"] = "smtp.gmail.com"
 app.config["MAIL_USE_TLS"] = True
 app.config["MAIL_USERNAME"] = username
-
-# app.config["MAIL_DEFAULT_SENDER"] = "ekaindi5801@gmail.com"
-# app.config["MAIL_PASSWORD"] = "khlt okro ctjr qfbm"
-# app.config["MAIL_PORT"] = 587
-# app.config["MAIL_SERVER"] = "smtp.gmail.com"
-# app.config["MAIL_USE_TLS"] = True
-# app.config["MAIL_USERNAME"] = "ekaindi5801@gmail.com"
 
 mail = Mail(app)
 
