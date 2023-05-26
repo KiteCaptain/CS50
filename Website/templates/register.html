@@ -13,16 +13,21 @@
             </ul>
         </div>
         <div class="landing">
-            <form method="get">
-                <input name="name" id="name" type="text">
-                <input type="submit">
-            </form>
             <div>
                 <h4 class="greetings">Hello, {{ name }}</h4>
-                <button id="R">R</button>
-                <button id="G">G</button>
-                <button id="B">B</button>
             </div> 
+            <form method="POST">
+                <input type="text" name="name">
+                <select name="sport" type="radio">
+                    <option disabled selected value="Football">Select your sport</option>
+                    {% for sport in sports %}
+                    <option value="{{sport}}">{{sport}} </option>
+                    {% endfor %}
+
+                </select>
+                <button type="Submit">Submit</button>
+            </form>
+            
         </div>
     </div>
  {% endblock %}
