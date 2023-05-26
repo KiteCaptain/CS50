@@ -1,0 +1,10 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div style="padding-top: 100px;">
+    <form class="landing" action="/login" method="POST">
+        <input autocomplete='off' autofocus name="username" placeholder="Enter name">
+        <input type="submit">
+    </form>
+</div>
+{% endblock %}

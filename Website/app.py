@@ -1,6 +1,7 @@
 import os
 from cs50 import SQL
-from flask import Flask, redirect, render_template, request, url_for
+from flask import Flask, redirect, render_template, request, url_for, session
+from flask_session import Session
 from flask_mail import Mail, Message
 import csv 
 from dotenv import load_dotenv
@@ -8,6 +9,10 @@ from dotenv import load_dotenv
 app = Flask(__name__) 
 app.debug = True
 db = SQL("sqlite:///clubs.db")
+
+app.config["SESSION_PERMANENT"] = False
+app.config["SESSION_TYPE"] = "filesystem"
+Session(app)
 
 load_dotenv()
 
@@ -36,7 +41,10 @@ SPORTS = [
 
 @app.route("/")
 def index():
-    return render_template("search.html", name=request.args.get("name", "there!")) 
+    if not session.get("name"):
+        return redirect("/login")
+    return render_template("index.html")
+    # return render_template("search.html", name=request.args.get("name", "there!")) 
 
 @app.route("/register", methods=['POST', 'GET'])
 def register():
@@ -70,7 +78,40 @@ def registrants():
             registrants = {row[0]: row[1] for row in reader}
     return render_template("registrants.html", registrants=registrants)
             
+@app.route("/login", methods=['POST', 'GET'])
+def login_handler():
+    if request.method == "POST":
+        name = request.form.get("username") 
+        session["name"] = request.form.get("username")
+        return redirect("/")
+    return render_template("login.html")
+
+@app.route("/logout", methods=['POST', 'GET'])
+def logout_handler():
+    session["name"] = None 
+    return redirect("/")
+
+@app.route("/store", methods=['POST', 'GET'])
+def store():
+    books = db.execute("SELECT * FROM books")
+    return render_template("books.html", books=books)
+
+@app.route("/store/cart", methods=['POST', 'GET'])
+def cart_handler():
+    # Ensure cart exists
+    if "cart" not in session:
+        session["cart"] = []
+
+    # POST
+    if request.method == 'POST':
+        id = request.form.get("id")
+        if id: 
+            session["cart"].append(id)
+        return redirect("/store/cart")
     
+    #GET 
+    books = db.execute("SELECT * FROM books WHERE id IN (?)", session["cart"])
+    return render_template("cart.html", books=books)
     
 if __name__ == "__main__":
     app.run(debug=True)

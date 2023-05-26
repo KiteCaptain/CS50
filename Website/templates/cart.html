@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div style="padding-top: 100px;" class="landing">
+    <h1>Captain Books</h1>
+    {% for book in books %}
+    <h2>{{ book.title }}</h2>
+    <form  action="/cart" method="POST">
+        <input name="id" type="hidden" value="{{ book.id }}">
+        <input type="submit" value="Add to cart">
+    </form>
+    {% endfor %}
+</div>
+{% endblock %}
