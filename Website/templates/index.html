@@ -2,8 +2,29 @@
 
 {% block body %}
     {% if session.name %}
-    <h1>You are logged in as {{session.name}}. <a href="/logout">Log out</a> </h1>
+    <!-- <h1>You are logged in as {{session.name}}. <a href="/logout">Log out</a> </h1> -->
+    <!-- <form style="margin:200px;" action="" method="GET">
+        <input autocomplete="off" autofocus placeholder="Search for movie" name="q" type="search">
+        <input type="submit" value="Search">
+    </form> -->
+    <input autocomplete="off" autofocus placeholder="Search for movie" type="text" >
+    <ul></ul>
     {% else %}
     <h1>You are not logged in. <a href="/login">Log in here</a>
     {% endif %}
+    <script>
+        let input = document.querySelector('input');
+        input.addEventListener('keyup', function() {
+            $.get('/search?q=' + input.value, function(shows) {
+                let html = '';
+                for (let id in shows) 
+                {
+                    let title = shows[id].title;
+                    html += '<li>' + title + '</li>';
+                }
+                document.querySelector('ul').innerHTML = html
+            })
+        })
+    </script>
+
 {% endblock %}

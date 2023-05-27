@@ -1,6 +1,6 @@
 import os
 from cs50 import SQL
-from flask import Flask, redirect, render_template, request, url_for, session
+from flask import Flask, redirect, render_template, request, url_for, session, jsonify
 from flask_session import Session
 from flask_mail import Mail, Message
 import csv 
@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 
 app = Flask(__name__) 
 app.debug = True
-db = SQL("sqlite:///books.db")
+db = SQL("sqlite:///shows.db")
 
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
@@ -123,6 +123,15 @@ def remove_from_cart():
     print(id)
     print(session["cart"])
     return redirect("/store/cart")
+
+@app.route("/search", methods=["GET", "POST"])
+def movie_search_handler():
+    # db.execute("CREATE INDEX idx_shows_title ON shows (title)")
+    if len(request.args.get("q")) < 3:
+        shows = []
+    else:
+        shows = db.execute("SELECT * FROM shows INDEXED BY idx_shows_title WHERE title LIKE ? LIMIT ?", "%" + request.args.get("q") + "%", 30)
+    return jsonify(shows)
     
 if __name__ == "__main__":
     app.run(debug=True)
