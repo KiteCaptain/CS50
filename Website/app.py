@@ -105,13 +105,24 @@ def cart_handler():
     # POST
     if request.method == 'POST':
         id = request.form.get("id")
-        if id: 
+        if id not in session["cart"]: 
             session["cart"].append(id)
         return redirect("/store/cart")
     
     #GET 
     books = db.execute("SELECT * FROM books WHERE id IN (?)", session["cart"])
     return render_template("cart.html", books=books)
+
+@app.route("/delete_item", methods=['POST'])
+def remove_from_cart():
+    id = request.form.get("id")
+    print(id)
+    print(session["cart"])
+    if id in session["cart"]:
+        session["cart"].remove(id)
+    print(id)
+    print(session["cart"])
+    return redirect("/store/cart")
     
 if __name__ == "__main__":
     app.run(debug=True)
