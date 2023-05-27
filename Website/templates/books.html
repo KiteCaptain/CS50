@@ -3,13 +3,29 @@
 {% block body %}
 <div style="padding-top: 100px;" class="landing">
     <h1>Captain Books</h1>
-    {% for book in books %}
-    <h5>{{ book.title }}</h5>
-    <form  action="/store/cart" method="POST">
-        <input name="id" type="hidden" value="{{ book.id }}">
-        <input type="submit" value="Add to cart">
-    </form>
-    {% endfor %}
-    <p>Continue to <a href="/store/cart">cart</a></p>
+<table>
+    <thead>
+        <tr>
+            <th>Book Title</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for book in books %}
+        <tr>
+            <td>
+                <h5>{{ book.title }}</h5>
+            </td>
+            <td>
+                <form  action="/store/cart" method="POST">
+                    <input name="id" type="hidden" value="{{ book.id }}">
+                    <input type="submit" value="Add to cart">
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>  
+</table>
+<p>Continue to <a href="/store/cart">cart</a></p>
 </div>
 {% endblock %}
